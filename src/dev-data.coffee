@@ -28,6 +28,8 @@ devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 		put req, res
 
 	put = (req, res) ->
+		{name} = req.params
+		console.log('PUT', name)
 		data = req.body
 		if dontTransactBeforeDelay
 			data.dontTransactBefore = moment().unix() + dontTransactBeforeDelay
@@ -46,7 +48,7 @@ devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 			return value
 
 		json = JSON.stringify(req.body, replacer)
-		console.log 'JSON', json
+		# console.log 'JSON', json
 		json.replace /\\"/g, '￿'
 
 		json = json.replace(/\"([^"]+)\":/g, '$1:')
@@ -62,7 +64,6 @@ devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 
 		dataStringCoffee += "\nmodule.exports = data"
 
-		{name} = req.params
 		filePath = devPath + "/#{name}.coffee"
 
 		shouldOverwrite = req.query.shouldOverwrite || false
