@@ -1,0 +1,32 @@
+{
+  "name": "dev-data",
+  "version": "0.1.0",
+  "description": "A tiny node server for saving data on disk",
+  "main": "lib/dev-data.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "coffee -o lib/ -c src/",
+    "dist": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cottin/dev-data.git"
+  },
+  "keywords": [
+    "dev-tools"
+  ],
+  "author": "Victor Cottin <victor@cottin.se> (http://www.cottin.se/)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "js2coffee": "^2.0.4",
+    "lodash": "^3.9.3",
+    "moment": "^2.10.3",
+    "ramda": "^0.15.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.1",
+    "rimraf": "^2.4.3"
+  }
+}
