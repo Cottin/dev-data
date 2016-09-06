@@ -1,6 +1,6 @@
 {
   "name": "dev-data",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sync your application state to local files and inspect them in your texteditor",
   "main": "lib/dev-data.js",
   "scripts": {
