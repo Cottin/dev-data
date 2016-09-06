@@ -19,7 +19,7 @@ devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 		res.set 'Access-Control-Max-Age', 5184000
 		next()
 
-	app.use bodyParser.json()
+	app.use bodyParser.json({limit: '50mb'})
 
 	app.put '/dev/data/:name', (req, res) ->
 		# debounce kommer inte fungera, man måste bygga upp en kö och ta saker i turordning
