@@ -6,7 +6,7 @@ bodyParser = require 'body-parser'
 js2coffee = require 'js2coffee'
 moment = require 'moment'
 lo = require 'lodash'
-{add, keys, map, replace, test} = R = require 'ramda' #auto_require:ramda
+{add, keys, map, replace, test, without} = R = require 'ramda' #auto_require:ramda
 
 devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 	app = new express()
@@ -40,7 +40,8 @@ devDataServer = (devPath, port, dontTransactBeforeDelay = 3) ->
 			if value && R.is(Object, value) && ! R.is(Array, value)
 				replacement = {}
 				for k of value
-					if ! test /^[a-zA-Z0-9_]*$/, k
+					# e.g. hashes as keys starting with a number throws error without this
+					if ! test /^[a-zA-Z_$]/, k
 						replacement['\'' + k + '\''] = value[k]
 					else
 						replacement[k] = value[k]
